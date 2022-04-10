@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/minireset.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/cart.css" />
+    <script language="JavaScript" src="script/cart.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="w">
+        <div class="header-left">
+          <a th:href="@{/templates/index.html}">
+            <img src="img/logo.gif" alt=""
+          /></a>
+          <h1>订单详情</h1>
+        </div>
+
+        <div id="header">
+          <span class="wel_word"><a th:href="@{/orderManagerList}" class="gohome">返回</a></span>
+        </div>
+      </div>
+    </div>
+    <div class="list">
+      <div class="w">
+        <table>
+          <thead>
+            <tr>
+              <th>图片</th>
+              <th>商品名称</th>
+              <th>数量</th>
+              <th>单价</th>
+              <th>金额</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="orderItem : ${session.orderItemManagerList}">
+              <td>
+                <img th:src="@{|uploads/${orderItem.realBook.bookImg}|}" alt="" />
+              </td>
+              <td th:text="${orderItem.realBook.bookName}">活着</td>
+              <td th:text="${orderItem.buyCount}">5</td>
+              <td th:text="${orderItem.realBook.price}">36.8</td>
+              <td th:text="${orderItem.simpleBookPrice}">36.8</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="w">
+        <div class="top">
+
+        </div>
+        <div class="content">
+
+        </div>
+      </div>
+      <div class="down">
+        晓荷书城 ©2022
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>后台管理</title>
+<link type="text/css" rel="stylesheet" href="css/style.css" >
+<style type="text/css">
+	h1 {
+		text-align: center;
+		margin-top: 200px;
+	}
+</style>
+</head>
+<body>
+	
+	<div id="header">
+			<img class="logo_img" alt="" src="img/logo.gif" >
+			<span class="wel_word">后台管理系统</span>
+			<div>
+				<a th:href="@{/bookManagerList}">图书管理</a>
+				<a th:href="@{/orderManagerList}">订单管理</a>
+			</div>
+	</div>
+	
+	<div id="main">
+		<h1>欢迎管理员进入后台管理系统</h1>
+	</div>
+	
+	<div id="bottom">
+		<span>
+			晓荷书城 ©2022
+		</span>
+	</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/minireset.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/cart.css" />
+    <link rel="stylesheet" href="css/bookManger.css" />
+    <link rel="stylesheet" href="css/orderManger.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="w">
+        <div class="header-left">
+          <a href="../index.html">
+            <img src="img/logo.gif" alt=""
+          /></a>
+          <h1>订单管理系统</h1>
+        </div>
+        <div class="header-right">
+          <a th:href="@{/bookManager}" class="order">图书管理</a>
+          <a th:href="@{/orderManager}" class="destory">订单管理</a>
+          <a th:href="@{/manager}" class="gohome">返回首页</a>
+        </div>
+      </div>
+    </div>
+    <div class="list">
+      <div class="w">
+        <table>
+          <thead>
+            <tr>
+              <th>订单号</th>
+              <th>订单日期</th>
+              <th>订单金额</th>
+              <th>订单数量</th>
+              <th>发货状态</th>
+              <th>订单详情</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="orderBean : ${session.orderManagerPage.records}" th:object="${orderBean}">
+              <td th:text="*{orderNo}">12354456895</td>
+              <td th:text="*{orderDate}">
+                2015.04.23
+              </td>
+              <td th:text="*{orderMoney}">90.00</td>
+              <td th:text="*{totalBookCount}">88</td>
+              <td><a th:href="@{/updateOrderManagerCondition(orderStatus=*{orderStatus},id=*{id})}" class="send" th:text="*{orderCondition}">等待发货</a></td>
+              <td><a th:href="@{/orderMessageManagerList(orderId=*{id})}">查看详情</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="footer">
+          <div class="footer-right">
+            <div><a th:href="@{/orderManagerList(pageNo=1)}">首页</a></div>
+            <div><a th:href="@{/orderManagerList(pageNo=${session.orderManagerPage.current},operate=pageUp)}">上一页</a></div>
+            <div><a th:href="@{/orderManagerList(pageNo=${session.orderManagerPage.current},operate=pageDown)}">下一页</a></div>
+            <div><a th:href="@{/orderManagerList(pageNo=${session.orderManagerPage.pages})}">末页</a></div>
+            <span th:text="|第${session.orderManagerPage.current}页|">第1页</span>
+            <span th:text="|共${session.orderManagerPage.pages}页|">共10页</span>
+            <span th:text="|共${session.orderManagerPage.total}条记录|">30条记录</span>
+            <span>
+              <form th:action="@{/orderManagerList}" method="post">
+                到<input type="text" name="pageNo"/>页
+                <input type="submit" value="确认"/>
+              </form>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="w">
+        <div class="top">
+
+        </div>
+        <div class="content">
+
+        </div>
+      </div>
+      <div class="down">
+        晓荷书城 ©2022
+      </div>
+    </div>
+  </body>
+</html>

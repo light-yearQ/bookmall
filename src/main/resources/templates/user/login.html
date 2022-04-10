@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>晓荷书城登录页面</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="login_header">
+      <a href="../index.html">
+        <img class="logo_img" alt="" href="img/logo.gif" />
+      </a>
+    </div>
+
+    <div class="login_banner">
+      <div id="l_content">
+        <span class="login_word">欢迎登录晓荷书城</span>
+      </div>
+
+      <div id="content">
+        <div class="login_form">
+          <div class="login_box">
+            <div class="tit">
+              <h1>晓荷会员</h1>
+            </div>
+            <div class="msg_cont">
+              <b></b>
+              <span class="errorMsg">请输入用户名和密码</span>
+            </div>
+            <div class="form">
+              <form th:action="@{/login}" method="post">
+                <span>身　份：</span>
+                <label>
+                  <select name="userType">
+                    <option value="user">用户</option>
+                    <option value="admin">管理员</option>
+                  </select>
+                </label>
+                <br/>
+                <input type="hidden" name="operate" value="login"/>
+                <label>用户名称：
+                  <input class="itxt" type="text" placeholder="请输入用户名" autocomplete="off" tabindex="1"
+                    name="uname" id="username" value="admin" />
+                </label>
+                <br />
+                <br />
+                <label>用户密码：
+                  <input class="itxt" type="password" placeholder="请输入密码" autocomplete="off" tabindex="1"
+                    name="pwd" id="password" value="123456"/>
+                </label>
+                <br />
+                <br />
+                <input type="submit" value="登录" id="sub_btn" />
+              </form>
+              <div class="tit">
+                <a th:href="@{/regist}">立即注册</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

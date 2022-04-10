@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/minireset.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/cart.css" />
+    <link rel="stylesheet" href="css/bookManger.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="w">
+        <div class="header-left">
+          <a href="../index.html">
+            <img src="img/logo.gif" alt=""
+          /></a>
+          <h1>图书管理系统</h1>
+        </div>
+        <div class="header-right">
+          <a th:href="@{/bookManager}" class="order">图书管理</a>
+          <a th:href="@{/orderManager}" class="destory">订单管理</a>
+          <a th:href="@{/manager}" class="gohome">返回首页</a>
+        </div>
+      </div>
+    </div>
+    <div class="list">
+      <div class="w">
+        <div class="add">
+          <a th:href="@{/bookAdd}">添加图书</a>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>图片</th>
+              <th>商品名称</th>
+              <th>价格</th>
+              <th>作者</th>
+              <th>销量</th>
+              <th>库存</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="bookManager : ${session.pageManager.records}">
+              <td>
+                <img th:src="@{|uploads/${bookManager.bookImg}|}" alt="" />
+              </td>
+              <td th:text="${bookManager.bookName}">活着</td>
+              <td th:text="${bookManager.price}">
+                100.00
+              </td>
+              <td th:text="${bookManager.author}">余华</td>
+              <td th:text="${bookManager.saleCount}">200</td>
+              <td th:text="${bookManager.bookCount}">400</td>
+              <td>
+                <a th:href="@{/bookUpdate(bookId=${bookManager.id})}">修改</a><a th:href="@{/deleteBook(bookId=${bookManager.id})}" class="del">删除</a>
+              </td>
+            </tr>
+            </tr>
+          </tbody>
+        </table>
+        <div class="footer">
+          <div class="footer-right">
+            <div><a th:href="@{/bookManagerList(pageNo=1)}">首页</a></div>
+            <div><a th:href="@{/bookManagerList(pageNo=${session.pageManager.current},operate=pageUp)}">上一页</a></div>
+            <div><a th:href="@{/bookManagerList(pageNo=${session.pageManager.current},operate=pageDown)}">下一页</a></div>
+            <div><a th:href="@{/bookManagerList(pageNo=${session.pageManager.pages})}">末页</a></div>
+            <span th:text="|第${session.pageManager.current}页|">第1页</span>
+            <span th:text="|共${session.pageManager.pages}页|">共10页</span>
+            <span th:text="|共${session.pageManager.total}条记录|">30条记录</span>
+            <span>
+                        <form th:action="@{/bookManagerList}" method="post">
+                            到<input type="text" name="pageNo"/>页
+                            <input type="submit" value="确认"/>
+                        </form>
+                    </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div class="w">
+        <div class="top">
+
+        </div>
+        <div class="content">
+
+        </div>
+      </div>
+      <div class="down">
+        晓荷书城 ©2022
+      </div>
+    </div>
+  </body>
+</html>

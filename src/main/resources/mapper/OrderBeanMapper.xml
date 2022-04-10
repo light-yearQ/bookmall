@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bookmall.mapper.OrderBeanMapper">
+
+    <resultMap id="BaseResultMap" type="bookmall.pojo.OrderBean">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>
+            <result property="orderDate" column="order_date" jdbcType="TIMESTAMP"/>
+            <result property="orderMoney" column="order_money" jdbcType="DOUBLE"/>
+            <result property="orderStatus" column="order_status" jdbcType="TINYINT"/>
+            <result property="orderUser" column="order_user" jdbcType="INTEGER"/>
+            <result property="totalBookCount" column="total_book_count" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,order_no,order_date,
+        order_money,order_status,order_user,
+        total_book_count
+    </sql>
+</mapper>
